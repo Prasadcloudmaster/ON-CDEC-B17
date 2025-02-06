@@ -1,0 +1,27 @@
+https://github.com/Prasadcloudmaster/ON-CDEC-B17.git
+
+
+pipeline {
+    agent any
+    stages {
+        stage('Pull') {
+            steps {
+                git branch: 'main', url:'https://github.com/Prasadcloudmaster/ON-CDEC-B17.git'
+            }
+        }   
+        stage('Test') {
+            steps {
+                sh '''
+                        terraform init
+                        terraform plan'''
+            }
+        }   
+        stage('Deploy') {   
+            steps {
+                sh '''  
+                    terraform init
+                    terraform apply --auto-approve'''
+            }
+        }
+    }
+}
