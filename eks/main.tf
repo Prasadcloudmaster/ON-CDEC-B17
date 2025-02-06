@@ -1,4 +1,3 @@
-main.tf
 provider "aws" {
   region = "ap-southeast-2"
 }
@@ -108,7 +107,6 @@ resource "aws_eks_node_group" "cbz_nodegroup" {
     desired_size = var.desired_nodes
     max_size     = var.max_nodes
     min_size     = var.min_nodes
-    
   }
 
   instance_types = [var.node_instance_type]
@@ -119,25 +117,3 @@ resource "aws_eks_node_group" "cbz_nodegroup" {
     aws_iam_role_policy_attachment.ec2_container_policy
   ]
 }
-
-
-var.tf
-
-variable project {
-    default = "cbz"
-}
-variable desired_nodes {
-    default = 2
-}
-variable max_nodes {
-    default = 2
-}
-variable min_nodes {
-    default = 2
-}
-variable node_instance_type {
-    default = "t3.micro"
-}
-
-
-    
